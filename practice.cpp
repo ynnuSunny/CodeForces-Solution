@@ -3,42 +3,28 @@ using namespace std;
 
 int main(){
     
-     int n;
-     cin>>n;
-
-     while (n--)
-     {
-         char a[21],b[21];
-         cin>>a>>b;
-         int value=0,max=0,lenA = strlen(a);
-         int lenB = strlen(b);
-
-         for(int i=0;i<lenA;i++){
-             int index = i;
-             value=0;
-             for(int j=0;j<lenB;j++){
-               //  cout<<"b = "<<b[j]<<" a = "<<a[index];
-                 if(b[j] == a[index]){
-                     index++;
-                     value++;
-                 }
-                 else if(index!=i){
-                     index=i;
-                     j -=value;
-                     if(value>max){
-                        max = value;
-                     }
-                      value=0;
-                 }    
-              }
-                if(value>max){
-                  max = value;
-                  }
-         }
-         
-         value = (lenA-max) + (lenB-max);
-         cout<<value<<endl;
+     int n,m,i,sum=0,j,temp;
+     cin>>n>>m;
+     int a[n];
+     for(i=0;i<n;i++){
+          cin>>a[i];
      }
-     
 
+    for(i=0;i<n;i++){
+       for(j=i+1;j<n;j++){
+         if(a[i]>a[j]){
+             temp = a[i];
+             a[i] = a[j];
+             a[j] = temp;
+         }
+       }
+    }
+    
+     for(i=0;i<m;i++){
+     if(a[i]<=0) {
+         if(a[i]<0)a[i]*=(-1);
+       sum+=a[i];
+     }
+     }
+     cout<<sum<<endl;
 }
